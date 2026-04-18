@@ -28,7 +28,7 @@
         android:label="Debit/Credit"/>
 
     <fragment android:id="@+id/noteFragment"
-        android:name="com.jptechgenius.moneyhub.ui.note.NoteFragment"
+        android:name="com.jptechgenius.moneyhub.notes.NoteFragment"
         android:label="Notes"/>
 
     <fragment android:id="@+id/addTransactionFragment"

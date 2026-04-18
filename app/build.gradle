@@ -55,6 +55,23 @@ dependencies {
     implementation libs.lifecycle.viewmodel
     implementation libs.lifecycle.livedata
 
+
+    // JSON
+    implementation libs.gson
+
+
+    // 📷 ML Kit Text Recognition (OCR — all scripts)
+    implementation libs.text.recognition              // Latin
+    implementation libs.text.recognition.devanagari   // Hindi, Sanskrit, etc.
+    implementation libs.mlkit.text.recognition.chinese      // Chinese
+    implementation libs.text.recognition.japanese     // Japanese
+    implementation libs.text.recognition.korean       // Korean
+
+
+    // Glide for Image Loading
+    implementation libs.glide
+    annotationProcessor libs.compiler
+
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core

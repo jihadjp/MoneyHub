@@ -1,4 +1,4 @@
-package com.jptechgenius.moneyhub.ui.note;
+package com.jptechgenius.moneyhub.notes;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;

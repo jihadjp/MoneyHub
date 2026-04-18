@@ -1,4 +1,4 @@
-package com.jptechgenius.moneyhub.ui.note;
+package com.jptechgenius.moneyhub.notes;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

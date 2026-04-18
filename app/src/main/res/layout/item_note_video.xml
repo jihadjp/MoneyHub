@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginEnd="8dp">
+
+    <!-- Video thumbnail -->
+    <ImageView
+        android:id="@+id/videoThumb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:background="@color/bg"
+        android:contentDescription="Video thumbnail" />
+
+    <!-- Dark overlay so play button is always visible -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#55000000" />
+
+    <!-- Play icon (centre) -->
+    <ImageView
+        android:id="@+id/videoPlayOverlay"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_play"
+        app:tint="#FFFFFF"
+        android:contentDescription="Play video" />
+
+    <!-- Remove button (top-right) -->
+    <ImageButton
+        android:id="@+id/removeVideoButton"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="top|end"
+        android:layout_margin="4dp"
+        android:background="#88000000"
+        android:src="@drawable/ic_close"
+        app:tint="#FFFFFF"
+        android:padding="2dp"
+        android:contentDescription="Remove video" />
+
+</FrameLayout>
