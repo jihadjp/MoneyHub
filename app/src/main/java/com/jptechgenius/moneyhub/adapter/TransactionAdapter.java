@@ -27,6 +27,8 @@ public class TransactionAdapter
 
     public interface OnItemClickListener {
         void onItemClick(TransactionEntity transaction);
+        void onEditClick(TransactionEntity transaction);
+        void onDeleteClick(TransactionEntity transaction);
     }
 
     private final OnItemClickListener listener;
@@ -48,7 +50,8 @@ public class TransactionAdapter
                 public boolean areContentsTheSame(@NonNull TransactionEntity o,
                                                   @NonNull TransactionEntity n) {
                     return o.getAmount() == n.getAmount()
-                            && o.getCategory().equals(n.getCategory())
+                            && (o.getCategory() == null ? n.getCategory() == null : o.getCategory().equals(n.getCategory()))
+                            && (o.getReason() == null ? n.getReason() == null : o.getReason().equals(n.getReason()))
                             && o.getDateMillis() == n.getDateMillis();
                 }
             };
@@ -115,8 +118,15 @@ public class TransactionAdapter
                         new android.widget.PopupMenu(itemView.getContext(), b.btnMenu);
                 popup.inflate(R.menu.menu_transaction_item);
                 popup.setOnMenuItemClickListener(item -> {
-                    // Handle edit / delete from menu
-                    return true;
+                    int id = item.getItemId();
+                    if (id == R.id.action_edit) {
+                        listener.onEditClick(t);
+                        return true;
+                    } else if (id == R.id.action_delete) {
+                        listener.onDeleteClick(t);
+                        return true;
+                    }
+                    return false;
                 });
                 popup.show();
             });

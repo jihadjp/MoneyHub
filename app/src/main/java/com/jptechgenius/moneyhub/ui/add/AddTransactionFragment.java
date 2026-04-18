@@ -20,6 +20,8 @@ public class AddTransactionFragment extends Fragment {
 
     private FragmentAddTransactionBinding binding;
     private HomeViewModel viewModel;
+    private int transactionId = -1;
+    private TransactionEntity existingTransaction;
 
     @Nullable
     @Override
@@ -31,10 +33,33 @@ public class AddTransactionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // Using HomeViewModel for simplicity, or could have a dedicated AddTransactionViewModel
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
+        if (getArguments() != null) {
+            transactionId = getArguments().getInt("transaction_id", -1);
+        }
+
+        if (transactionId != -1) {
+            loadTransactionData();
+            binding.btnSave.setText("Update");
+        }
+
         binding.btnSave.setOnClickListener(v -> saveTransaction());
+    }
+
+    private void loadTransactionData() {
+        viewModel.getTransactionById(transactionId).observe(getViewLifecycleOwner(), transaction -> {
+            if (transaction != null) {
+                existingTransaction = transaction;
+                binding.etTitle.setText(transaction.getReason());
+                binding.etAmount.setText(String.valueOf(transaction.getAmount()));
+                if ("income".equalsIgnoreCase(transaction.getType())) {
+                    binding.rbIncome.setChecked(true);
+                } else {
+                    binding.rbExpense.setChecked(true);
+                }
+            }
+        });
     }
 
     private void saveTransaction() {
@@ -46,14 +71,19 @@ public class AddTransactionFragment extends Fragment {
             return;
         }
 
-        TransactionEntity transaction = new TransactionEntity();
+        TransactionEntity transaction = (existingTransaction != null) ? existingTransaction : new TransactionEntity();
         transaction.setReason(title);
         transaction.setAmount(Double.parseDouble(amountStr));
-        transaction.setType(binding.rbIncome.isChecked() ? "INCOME" : "EXPENSE");
-        transaction.setDateMillis(DateUtils.getCurrentTimestamp());
+        transaction.setType(binding.rbIncome.isChecked() ? "income" : "expense");
+        if (transaction.getCategory() == null) {
+            transaction.setCategory("General");
+        }
+        if (transaction.getDateMillis() == 0) {
+            transaction.setDateMillis(DateUtils.getCurrentTimestamp());
+        }
         
         viewModel.insert(transaction);
-        Toast.makeText(requireContext(), "Transaction Saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireContext(), transactionId == -1 ? "Transaction Saved" : "Transaction Updated", Toast.LENGTH_SHORT).show();
         requireActivity().onBackPressed();
     }
 

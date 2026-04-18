@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.jptechgenius.moneyhub.R;
 import com.jptechgenius.moneyhub.adapter.TransactionAdapter;
+import com.jptechgenius.moneyhub.data.local.entity.TransactionEntity;
 import com.jptechgenius.moneyhub.databinding.FragmentHomeBinding;
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -45,17 +46,42 @@ public class HomeFragment extends Fragment {
         setupClickListeners();
     }
 
+    private long lastClickTime = 0;
+
     private void setupRecyclerView() {
-        adapter = new TransactionAdapter(transaction -> {
-            // Navigate to detail/edit screen on item click
-            Bundle args = new Bundle();
-            args.putInt("transaction_id", transaction.getId());
-            NavController nav = Navigation.findNavController(requireView());
-            nav.navigate(R.id.action_home_to_editTransaction, args);
+        adapter = new TransactionAdapter(new TransactionAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(TransactionEntity transaction) {
+                navigateToEdit(transaction);
+            }
+
+            @Override
+            public void onEditClick(TransactionEntity transaction) {
+                navigateToEdit(transaction);
+            }
+
+            @Override
+            public void onDeleteClick(TransactionEntity transaction) {
+                viewModel.delete(transaction);
+            }
         });
 
         binding.rvTransactions.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.rvTransactions.setAdapter(adapter);
+    }
+
+    private void navigateToEdit(TransactionEntity transaction) {
+        if (System.currentTimeMillis() - lastClickTime < 1000) return;
+        lastClickTime = System.currentTimeMillis();
+
+        Bundle args = new Bundle();
+        args.putInt("transaction_id", transaction.getId());
+        NavController nav = Navigation.findNavController(requireView());
+        
+        // Prevent navigating if we're not on the HomeFragment (already navigating)
+        if (nav.getCurrentDestination() != null && nav.getCurrentDestination().getId() == R.id.homeFragment) {
+            nav.navigate(R.id.action_home_to_editTransaction, args);
+        }
     }
 
     private void observeViewModel() {
@@ -91,14 +117,24 @@ public class HomeFragment extends Fragment {
     private void setupClickListeners() {
         // FAB -> navigate to Add Transaction
         binding.fabAdd.setOnClickListener(v -> {
+            if (System.currentTimeMillis() - lastClickTime < 1000) return;
+            lastClickTime = System.currentTimeMillis();
+
             NavController nav = Navigation.findNavController(requireView());
-            nav.navigate(R.id.action_home_to_addTransaction);
+            if (nav.getCurrentDestination() != null && nav.getCurrentDestination().getId() == R.id.homeFragment) {
+                nav.navigate(R.id.action_home_to_addTransaction);
+            }
         });
 
         // Chart icon -> navigate to Today's Chart
         binding.btnChart.setOnClickListener(v -> {
+            if (System.currentTimeMillis() - lastClickTime < 1000) return;
+            lastClickTime = System.currentTimeMillis();
+
             NavController nav = Navigation.findNavController(requireView());
-            nav.navigate(R.id.action_home_to_todayChart);
+            if (nav.getCurrentDestination() != null && nav.getCurrentDestination().getId() == R.id.homeFragment) {
+                nav.navigate(R.id.action_home_to_todayChart);
+            }
         });
     }
 

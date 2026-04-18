@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_light_gray">
 
-    <!-- Scrollable content -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,195 +14,197 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="80dp">
 
-            <!-- ===== BALANCE CARD ===== -->
+            <!-- Card Section -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="24dp"
                 app:cardElevation="8dp">
 
-                <!-- Gradient background via a FrameLayout overlay -->
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_gradient_card"
-                    android:padding="20dp">
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_balance_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Balance"
+                            android:textColor="#E0FFFFFF"
+                            android:textSize="16sp" />
+
+                        <ImageButton
+                            android:id="@+id/btn_chart"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentEnd="true"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_bar_chart"
+                            app:tint="#FFFFFF" />
+
+                        <TextView
+                            android:id="@+id/tv_current_balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_balance_title"
+                            android:layout_marginTop="8dp"
+                            android:text="$ 0.00"
+                            android:textColor="#FFFFFF"
+                            android:textSize="32sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginTop="24dp"
+                        android:orientation="horizontal">
 
-                        <!-- Chart icon top-right -->
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:id="@+id/tv_balance_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
-                                android:text="Current Balance"
-                                android:textColor="#FFFFFF"
-                                android:textSize="14sp"
-                                android:alpha="0.85"/>
-
-                            <ImageButton
-                                android:id="@+id/btn_chart"
-                                android:layout_width="44dp"
-                                android:layout_height="44dp"
-                                android:layout_alignParentEnd="true"
-                                android:background="@drawable/bg_chart_icon"
-                                android:src="@drawable/ic_bar_chart"
-                                app:tint="#FFFFFF"
-                                android:contentDescription="View Chart"/>
-
-                            <TextView
-                                android:layout_below="@id/tv_balance_label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
-                                android:id="@+id/tv_current_balance"
-                                android:text="$ 0.00"
-                                android:textColor="#FFFFFF"
-                                android:textSize="28sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="4dp"/>
-                        </RelativeLayout>
-
-                        <!-- Income / Expense row -->
+                        <!-- Income Section -->
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            android:layout_marginTop="16dp">
+                            android:layout_weight="1"
+                            android:gravity="start"
+                            android:orientation="horizontal">
 
-                            <!-- Income -->
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:background="@drawable/bg_chart_icon"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_arrow_up_circle"
+                                app:tint="#4CAF50" />
+
                             <LinearLayout
-                                android:layout_width="0dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal"
-                                android:gravity="center">
+                                android:layout_marginStart="12dp"
+                                android:orientation="vertical">
 
-                                <ImageView
-                                    android:layout_width="32dp"
-                                    android:layout_height="32dp"
-                                    android:src="@drawable/ic_arrow_up_circle"
-                                    app:tint="#66BB6A"/>
-
-                                <LinearLayout
+                                <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:layout_marginStart="8dp">
+                                    android:text="Income"
+                                    android:textColor="#B3FFFFFF"
+                                    android:textSize="14sp" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Total Income"
-                                        android:textColor="#CCFFFFFF"
-                                        android:textSize="12sp"/>
-
-                                    <TextView
-                                        android:id="@+id/tv_total_income"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="$ 0.00"
-                                        android:textColor="#FFFFFF"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold"/>
-                                </LinearLayout>
-                            </LinearLayout>
-
-                            <!-- Divider -->
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="40dp"
-                                android:background="#55FFFFFF"/>
-
-                            <!-- Expenses -->
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal"
-                                android:gravity="center">
-
-                                <ImageView
-                                    android:layout_width="32dp"
-                                    android:layout_height="32dp"
-                                    android:src="@drawable/ic_arrow_down_circle"
-                                    app:tint="#EF5350"/>
-
-                                <LinearLayout
+                                <TextView
+                                    android:id="@+id/tv_total_income"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:layout_marginStart="8dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Total Expenses"
-                                        android:textColor="#CCFFFFFF"
-                                        android:textSize="12sp"/>
-
-                                    <TextView
-                                        android:id="@+id/tv_total_expenses"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="$ 0.00"
-                                        android:textColor="#FFFFFF"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold"/>
-                                </LinearLayout>
+                                    android:text="$ 0.00"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </LinearLayout>
+
+                        <!-- Expense Section -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:background="@drawable/bg_chart_icon"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_arrow_down_circle"
+                                app:tint="#F44336" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Expenses"
+                                    android:textColor="#B3FFFFFF"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_total_expenses"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="$ 0.00"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+
                     </LinearLayout>
-                </FrameLayout>
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- ===== RECENT TRANSACTIONS HEADER ===== -->
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="Last Transaction History"
-                android:textColor="@color/text_secondary"
-                android:textSize="13sp"
-                android:fontFamily="sans-serif-medium"/>
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <!-- ===== TRANSACTION LIST ===== -->
-            <!-- Disabled scrolling since parent is NestedScrollView -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Recent Transactions"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_view_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="View All"
+                    android:textColor="@color/primary_blue"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_transactions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:nestedScrollingEnabled="false"
-                android:clipToPadding="false"
                 android:paddingHorizontal="16dp"
-                android:paddingBottom="80dp"/>
+                tools:listitem="@layout/item_transaction" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- ===== FAB ===== -->
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="24dp"
-        android:text="ADD"
-        app:icon="@drawable/ic_add"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_add"
         app:backgroundTint="@color/primary_blue"
-        android:textColor="#FFFFFF"/>
+        app:tint="#FFFFFF"
+        app:fabSize="normal"
+        app:elevation="8dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

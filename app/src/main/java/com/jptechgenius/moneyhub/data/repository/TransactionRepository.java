@@ -49,6 +49,10 @@ public class TransactionRepository {
 
     // ---- Read Operations (LiveData, observed on main thread) ----
 
+    public LiveData<TransactionEntity> getTransactionById(int id) {
+        return transactionDao.getTransactionById(id);
+    }
+
     public LiveData<List<TransactionEntity>> getRecentTransactions(int limit) {
         return transactionDao.getRecentTransactions(limit);
     }

@@ -31,6 +31,9 @@ public interface TransactionDao {
     @Query("DELETE FROM transactions WHERE id = :id")
     void deleteById(int id);
 
+    @Query("SELECT * FROM transactions WHERE id = :id")
+    LiveData<TransactionEntity> getTransactionById(int id);
+
     // ---- SELECT: All Transactions ----
 
     @Query("SELECT * FROM transactions ORDER BY date_millis DESC")

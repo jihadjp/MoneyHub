@@ -34,21 +34,19 @@ public class HomeViewModel extends ViewModel {
         this.repository = repository;
 
         recentTransactions = repository.getRecentTransactions(20);
-        totalIncome        = repository.allTransactions
-                .equals(null) ? new MutableLiveData<>(0.0)
-                : repository.totalIncome;
+        totalIncome        = repository.totalIncome;
         totalExpenses      = repository.totalExpenses;
 
         // Observe both income and expense totals to compute balance
-        currentBalance.addSource(repository.totalIncome, income -> {
-            Double expense = currentBalance.getValue();
+        currentBalance.addSource(totalIncome, income -> {
+            Double expense = totalExpenses.getValue();
             double i = income != null ? income : 0.0;
             double e = expense != null ? expense : 0.0;
             currentBalance.setValue(i - e);
         });
 
-        currentBalance.addSource(repository.totalExpenses, expense -> {
-            Double income = repository.totalIncome.getValue();
+        currentBalance.addSource(totalExpenses, expense -> {
+            Double income = totalIncome.getValue();
             double i = income != null ? income : 0.0;
             double e = expense != null ? expense : 0.0;
             currentBalance.setValue(i - e);
@@ -57,6 +55,10 @@ public class HomeViewModel extends ViewModel {
 
     public LiveData<Double> getCurrentBalance() {
         return currentBalance;
+    }
+
+    public LiveData<TransactionEntity> getTransactionById(int id) {
+        return repository.getTransactionById(id);
     }
 
     public void insert(TransactionEntity transaction) {

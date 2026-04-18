@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/homeFragment"
+            android:icon="@android:drawable/ic_menu_today"
+            android:title="Home" />
+        <item
+            android:id="@+id/reportFragment"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Report" />
+        <item
+            android:id="@+id/debitCreditFragment"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="Debt" />
+        <item
+            android:id="@+id/noteFragment"
+            android:icon="@android:drawable/ic_menu_edit"
+            android:title="Notes" />
+    </group>
+
+    <item android:title="Settings">
+        <menu>
+            <item
+                android:id="@+id/settingsFragment"
+                android:icon="@android:drawable/ic_menu_preferences"
+                android:title="Preferences" />
+        </menu>
+    </item>
+</menu>
