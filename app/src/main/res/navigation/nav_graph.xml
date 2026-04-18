@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment android:id="@+id/homeFragment"
+        android:name="com.jptechgenius.moneyhub.ui.home.HomeFragment"
+        android:label="Home">
+        <action android:id="@+id/action_home_to_addTransaction"
+            app:destination="@id/addTransactionFragment"/>
+        <action android:id="@+id/action_home_to_todayChart"
+            app:destination="@id/todayFragment"/>
+        <action android:id="@+id/action_home_to_editTransaction"
+            app:destination="@id/addTransactionFragment"/>
+    </fragment>
+
+    <fragment android:id="@+id/reportFragment"
+        android:name="com.jptechgenius.moneyhub.ui.report.ReportFragment"
+        android:label="Report"/>
+
+    <fragment android:id="@+id/todayFragment"
+        android:name="com.jptechgenius.moneyhub.ui.today.TodayFragment"
+        android:label="Today"/>
+
+    <fragment android:id="@+id/debitCreditFragment"
+        android:name="com.jptechgenius.moneyhub.ui.debitcredit.DebitCreditFragment"
+        android:label="Debit/Credit"/>
+
+    <fragment android:id="@+id/noteFragment"
+        android:name="com.jptechgenius.moneyhub.ui.note.NoteFragment"
+        android:label="Notes"/>
+
+    <fragment android:id="@+id/addTransactionFragment"
+        android:name="com.jptechgenius.moneyhub.ui.add.AddTransactionFragment"
+        android:label="Add Transaction">
+        <argument android:name="transaction_id"
+            app:argType="integer"
+            android:defaultValue="-1"/>
+    </fragment>
+</navigation>
