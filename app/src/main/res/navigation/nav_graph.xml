@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
@@ -27,9 +28,26 @@
         android:name="com.jptechgenius.moneyhub.ui.debitcredit.DebitCreditFragment"
         android:label="Debit/Credit"/>
 
-    <fragment android:id="@+id/noteFragment"
-        android:name="com.jptechgenius.moneyhub.notes.NoteFragment"
-        android:label="Notes"/>
+
+
+    <fragment
+        android:id="@+id/noteFragment"
+        android:name="com.jptechgenius.moneyhub.notes.ui.NotesListFragment"
+        android:label="My Notes"
+        tools:layout="@layout/fragment_notes_list" >
+
+        <action
+            android:id="@+id/action_notesList_to_notesEditor"
+            app:destination="@id/notesEditor" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/notesEditor"
+        android:name="com.jptechgenius.moneyhub.notes.ui.NoteEditorFragment"
+        android:label="Create New Note"
+        tools:layout="@layout/activity_note_editor" />
+
 
     <fragment android:id="@+id/addTransactionFragment"
         android:name="com.jptechgenius.moneyhub.ui.add.AddTransactionFragment"

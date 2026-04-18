@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/menu/note_editor_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_save"
+        android:title="Save"
+        android:icon="@drawable/ic_check"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_pick_color"
+        android:title="Note colour"
+        android:icon="@drawable/ic_palette"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_manage_labels"
+        android:title="Labels"
+        android:icon="@drawable/ic_label"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_export_pdf"
+        android:title="Export as PDF"
+        android:icon="@drawable/ic_picture_as_pdf"
+        app:showAsAction="never" />
+
+</menu>

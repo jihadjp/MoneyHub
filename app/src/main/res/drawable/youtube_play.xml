@@ -1,0 +1,52 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:state_pressed="true">
+    <layer-list>
+      <!-- Pressed state background -->
+      <item>
+        <shape android:shape="rectangle">
+          <solid android:color="#333"/>
+          <corners android:radius="8dp"/>
+        </shape>
+      </item>
+      <!-- YouTube play button with padding -->
+      <item android:gravity="center" android:top="16dp" android:bottom="16dp" android:left="16dp" android:right="16dp">
+        <vector android:width="64dp"
+            android:height="64dp"
+            android:viewportWidth="100"
+            android:viewportHeight="100">
+          <path
+              android:pathData="M94.76,27.37c-1.08,-4.05 -4.24,-7.23 -8.26,-8.31C79.22,17.09 50,17.09 50,17.09s-29.22,0 -36.5,1.97c-4.02,1.08 -7.19,4.27 -8.26,8.31C3.29,34.7 3.29,50 3.29,50s0,15.3 1.95,22.63c1.07,4.05 4.24,7.23 8.26,8.31C20.78,82.91 50,82.91 50,82.91s29.22,0 36.5,-1.97c4.02,-1.08 7.18,-4.27 8.26,-8.31C96.71,65.3 96.71,50 96.71,50S96.71,34.7 94.76,27.37z"
+              android:fillColor="#FF0000"/>
+          <path
+              android:pathData="M40.28,35.88l0,28.25l24.83,-14.12z"
+              android:fillColor="#F1F1F1"/>
+        </vector>
+      </item>
+    </layer-list>
+  </item>
+  <item>
+    <layer-list>
+      <!-- Default state background -->
+      <item>
+        <shape android:shape="rectangle">
+          <solid android:color="#1e1e1e"/>
+          <corners android:radius="8dp"/>
+        </shape>
+      </item>
+      <!-- YouTube play button with padding -->
+      <item android:gravity="center" android:top="16dp" android:bottom="16dp" android:left="16dp" android:right="16dp">
+        <vector android:width="64dp"
+            android:height="64dp"
+            android:viewportWidth="100"
+            android:viewportHeight="100">
+          <path
+              android:pathData="M94.76,27.37c-1.08,-4.05 -4.24,-7.23 -8.26,-8.31C79.22,17.09 50,17.09 50,17.09s-29.22,0 -36.5,1.97c-4.02,1.08 -7.19,4.27 -8.26,8.31C3.29,34.7 3.29,50 3.29,50s0,15.3 1.95,22.63c1.07,4.05 4.24,7.23 8.26,8.31C20.78,82.91 50,82.91 50,82.91s29.22,0 36.5,-1.97c4.02,-1.08 7.18,-4.27 8.26,-8.31C96.71,65.3 96.71,50 96.71,50S96.71,34.7 94.76,27.37z"
+              android:fillColor="#FF0000"/>
+          <path
+              android:pathData="M40.28,35.88l0,28.25l24.83,-14.12z"
+              android:fillColor="#F1F1F1"/>
+        </vector>
+      </item>
+    </layer-list>
+  </item>
+</selector>

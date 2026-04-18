@@ -299,7 +299,8 @@ public class NoteEditorFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if      (id == R.id.action_save)          { saveNote();        return true; }
-        else if (id == R.id.action_export_pdf)    { exportToPdf();     return true; }
+        else if (id == R.id.action_export_pdf)    {
+            Toast.makeText(requireContext(), "Comming Soon...", Toast.LENGTH_SHORT).show();;     return true; }
         else if (id == R.id.action_pick_color)    { showColorPicker(); return true; }
         else if (id == R.id.action_manage_labels) { showLabelPicker(); return true; }
         return super.onOptionsItemSelected(item);
@@ -890,47 +891,47 @@ public class NoteEditorFragment extends Fragment {
 
     // ── PDF export ─────────────────────────────────────────────────────────
 
-    private void exportToPdf() {
-        getEditorContent(html -> new Handler(Looper.getMainLooper()).post(() -> {
-            if (!isAdded()) return;
-            currentNote.setTitle(titleEditText.getText().toString().trim());
-            currentNote.setContent(html);
-            currentNote.setImagePaths(new ArrayList<>(imagePaths));
-            Context context = getContext();
-            if (context == null) return;
-
-            // Show Lottie loading dialog
-            PdfExportLoadingDialog loadingDialog = PdfExportLoadingDialog.newInstance();
-            try {
-                loadingDialog.show(getParentFragmentManager(), "PDF_LOADING");
-            } catch (IllegalStateException ignored) {}
-
-            new PdfExportHelper(context).export(currentNote, pdfFile -> {
-                if (!isAdded()) return;
-
-                // Dismiss loading dialog
-                try { loadingDialog.dismissAllowingStateLoss(); }
-                catch (Exception ignored) {}
-
-                if (pdfFile != null) {
-                    try {
-                        Bundle bundle = new Bundle();
-                        bundle.putString(PDFViewerFragment.ARG_PDF_PATH, pdfFile.getAbsolutePath());
-                        bundle.putIntArray(PDFViewerFragment.ARG_PAGES, null);
-                        bundle.putString(PDFViewerFragment.ARG_TITLE, currentNote.getTitle());
-                        bundle.putBoolean(PDFViewerFragment.ARG_IS_LOCAL, true);
-
-                        Navigation.findNavController(requireView())
-                                .navigate(R.id.action_noteEditor_to_pdfViewer, bundle);
-
-                    } catch (IllegalStateException ignored) {}
-                } else {
-                    Context ctx = getContext();
-                    if (ctx != null) Toast.makeText(ctx, "PDF export failed", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }));
-    }
+//    private void exportToPdf() {
+//        getEditorContent(html -> new Handler(Looper.getMainLooper()).post(() -> {
+//            if (!isAdded()) return;
+//            currentNote.setTitle(titleEditText.getText().toString().trim());
+//            currentNote.setContent(html);
+//            currentNote.setImagePaths(new ArrayList<>(imagePaths));
+//            Context context = getContext();
+//            if (context == null) return;
+//
+//            // Show Lottie loading dialog
+//            PdfExportLoadingDialog loadingDialog = PdfExportLoadingDialog.newInstance();
+//            try {
+//                loadingDialog.show(getParentFragmentManager(), "PDF_LOADING");
+//            } catch (IllegalStateException ignored) {}
+//
+//            new PdfExportHelper(context).export(currentNote, pdfFile -> {
+//                if (!isAdded()) return;
+//
+//                // Dismiss loading dialog
+//                try { loadingDialog.dismissAllowingStateLoss(); }
+//                catch (Exception ignored) {}
+//
+//                if (pdfFile != null) {
+//                    try {
+//                        Bundle bundle = new Bundle();
+//                        bundle.putString(PDFViewerFragment.ARG_PDF_PATH, pdfFile.getAbsolutePath());
+//                        bundle.putIntArray(PDFViewerFragment.ARG_PAGES, null);
+//                        bundle.putString(PDFViewerFragment.ARG_TITLE, currentNote.getTitle());
+//                        bundle.putBoolean(PDFViewerFragment.ARG_IS_LOCAL, true);
+//
+//                        Navigation.findNavController(requireView())
+//                                .navigate(R.id.action_noteEditor_to_pdfViewer, bundle);
+//
+//                    } catch (IllegalStateException ignored) {}
+//                } else {
+//                    Context ctx = getContext();
+//                    if (ctx != null) Toast.makeText(ctx, "PDF export failed", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        }));
+//    }
 
     // ── OCR — Image to Text ─────────────────────────────────────────────────
 

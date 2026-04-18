@@ -1,0 +1,35 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="640dp"
+    android:viewportWidth="360"
+    android:viewportHeight="640">
+
+    <!-- Light blue base background -->
+    <path
+        android:fillColor="@color/light_blue"
+        android:pathData="M0,0h360v640h-360z" />
+
+    <!-- Subtle light blue gradient overlay -->
+    <path
+        android:fillColor="@color/light_gradient"
+        android:fillAlpha="0.15"
+        android:pathData="M0,0h360v640h-360z" />
+
+    <!-- Soft wave Layer 1 - far back with lighter tone -->
+    <path
+        android:fillColor="@color/soft_blue"
+        android:fillAlpha="0.2"
+        android:pathData="M0,320c90,-50 270,-50 360,0v320h-360z" />
+
+    <!-- Gentle wave Layer 2 - mid tone with softer light -->
+    <path
+        android:fillColor="@color/main_light_blue"
+        android:fillAlpha="0.25"
+        android:pathData="M0,360c60,-30 300,-30 360,0v280h-360z" />
+
+    <!-- Wave Layer 3 - soft base highlight with more glow -->
+    <path
+        android:fillColor="@color/pale_blue"
+        android:fillAlpha="0.1"
+        android:pathData="M0,500c120,40 240,40 360,0v140h-360z" />
+</vector>

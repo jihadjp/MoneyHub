@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="160dp"
+    android:viewportWidth="160"
+    android:viewportHeight="160">
+
+    <!-- Shadow -->
+    <path android:fillColor="#0D000000"
+        android:pathData="M42,136 Q80,144 118,136 Q128,150 80,153 Q32,150 42,136Z" />
+
+    <!-- Bin body -->
+    <path android:fillColor="#E8DEF8"
+        android:pathData="M46,58 L114,58 L108,132 Q107,136 103,136 L57,136 Q53,136 52,132Z" />
+
+    <!-- Bin body shading -->
+    <path android:fillColor="#D0BCFF" android:alpha="0.4"
+        android:pathData="M46,58 L60,58 L54,132 L52,132Z" />
+
+    <!-- Inner lines (vertical ribs) -->
+    <path android:strokeColor="#CAC4D0" android:strokeWidth="1.5"
+        android:pathData="M72,66 L68,128" />
+    <path android:strokeColor="#CAC4D0" android:strokeWidth="1.5"
+        android:pathData="M80,66 L80,128" />
+    <path android:strokeColor="#CAC4D0" android:strokeWidth="1.5"
+        android:pathData="M88,66 L92,128" />
+
+    <!-- Lid -->
+    <path android:fillColor="#6750A4"
+        android:pathData="M36,46 L124,46 Q128,46 128,50 L128,58 Q128,62 124,62 L36,62 Q32,62 32,58 L32,50 Q32,46 36,46Z" />
+
+    <!-- Lid highlight -->
+    <path android:fillColor="#7965AF" android:alpha="0.4"
+        android:pathData="M36,46 L124,46 Q128,46 128,50 L128,54 L32,54 L32,50 Q32,46 36,46Z" />
+
+    <!-- Handle on lid -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M66,40 Q66,34 80,34 Q94,34 94,40 L94,46 L86,46 L86,41 Q86,40 80,40 Q74,40 74,41 L74,46 L66,46Z" />
+
+    <!-- X mark (empty trash indicator) -->
+    <path android:strokeColor="#B3261E" android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:pathData="M66,80 L94,108" />
+    <path android:strokeColor="#B3261E" android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:pathData="M94,80 L66,108" />
+
+</vector>

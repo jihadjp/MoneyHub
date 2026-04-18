@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="160dp"
+    android:viewportWidth="160"
+    android:viewportHeight="160">
+
+    <!-- Shadow -->
+    <path android:fillColor="#0D000000"
+        android:pathData="M38,134 Q80,142 122,134 Q132,148 80,151 Q28,148 38,134Z" />
+
+    <!-- Box body -->
+    <path android:fillColor="#E8DEF8"
+        android:pathData="M30,70 L130,70 L130,132 Q130,136 126,136 L34,136 Q30,136 30,132Z" />
+
+    <!-- Box lid left flap -->
+    <path android:fillColor="#D0BCFF"
+        android:pathData="M30,48 L76,48 L76,70 L30,70Z" />
+
+    <!-- Box lid right flap -->
+    <path android:fillColor="#D0BCFF"
+        android:pathData="M84,48 L130,48 L130,70 L84,70Z" />
+
+    <!-- Box lid top strip -->
+    <path android:fillColor="#6750A4"
+        android:pathData="M26,44 L134,44 Q138,44 138,48 L138,56 Q138,60 134,60 L26,60 Q22,60 22,56 L22,48 Q22,44 26,44Z" />
+
+    <!-- Lid stripe highlight -->
+    <path android:fillColor="#7965AF" android:alpha="0.5"
+        android:pathData="M26,44 L134,44 Q138,44 138,48 L138,52 L22,52 L22,48 Q22,44 26,44Z" />
+
+    <!-- Down arrow on box -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M72,76 L72,98 L64,98 L80,116 L96,98 L88,98 L88,76Z" />
+
+</vector>

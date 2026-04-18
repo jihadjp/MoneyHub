@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- QR Code outline -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M30,30 h48 v48 h-48 z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M32,32 h44 v44 h-44 z" />
+
+    <!-- QR Pattern - Top Left Corner (Position marker) -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M34,34 h14 v14 h-14 z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M36,36 h10 v10 h-10 z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M38,38 h6 v6 h-6 z" />
+
+    <!-- QR Pattern - Top Right Corner (Position marker) -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M60,34 h14 v14 h-14 z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M62,36 h10 v10 h-10 z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M64,38 h6 v6 h-6 z" />
+
+    <!-- QR Pattern - Bottom Left Corner (Position marker) -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M34,60 h14 v14 h-14 z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M36,62 h10 v10 h-10 z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M38,64 h6 v6 h-6 z" />
+
+    <!-- QR Data Pattern -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M50,34 h4 v4 h-4 z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M34,50 h4 v4 h-4 z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M42,50 h4 v4 h-4 z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M50,50 h8 v4 h-8 z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M50,42 h4 v4 h-4 z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M62,50 h4 v8 h-4 z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M66,54 h4 v4 h-4 z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M54,62 h4 v4 h-4 z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M62,66 h8 v4 h-8 z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M66,62 h4 v4 h-4 z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M50,66 h4 v8 h-4 z" />
+
+    <!-- Scan corners - Top Left -->
+    <path
+        android:pathData="M26,26 L26,36 M26,26 L36,26"
+        android:strokeWidth="3"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round" />
+
+    <!-- Scan corners - Top Right -->
+    <path
+        android:pathData="M82,26 L82,36 M82,26 L72,26"
+        android:strokeWidth="3"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round" />
+
+    <!-- Scan corners - Bottom Left -->
+    <path
+        android:pathData="M26,82 L26,72 M26,82 L36,82"
+        android:strokeWidth="3"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round" />
+
+    <!-- Scan corners - Bottom Right -->
+    <path
+        android:pathData="M82,82 L82,72 M82,82 L72,82"
+        android:strokeWidth="3"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round" />
+
+</vector>

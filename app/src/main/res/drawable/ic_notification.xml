@@ -1,0 +1,19 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- QR Code notification icon -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M3,11h2v2H3zM5,5h2v2H5zM3,5h2v2H3zM3,7h2v2H3zM5,9h2v2H5zM3,9h2v2H3zM7,5h2v2H7zM7,9h2v2H7zM9,5h2v2H9zM9,7h2v2H9zM9,9h2v2H9z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M15,5h2v2h-2zM17,5h2v2h-2zM19,5h2v2h-2zM15,7h2v2h-2zM19,7h2v2h-2zM15,9h2v2h-2zM17,9h2v2h-2zM19,9h2v2h-2z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M3,15h2v2H3zM5,15h2v2H5zM3,17h2v2H3zM5,17h2v2H5zM3,19h2v2H3zM5,19h2v2H5zM7,15h2v2H7zM7,19h2v2H7zM9,15h2v2H9zM9,17h2v2H9zM9,19h2v2H9z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M13,13h2v2h-2zM15,15h2v2h-2zM17,13h2v2h-2zM19,15h2v2h-2zM13,17h2v2h-2zM15,19h2v2h-2zM17,17h2v2h-2zM19,19h2v2h-2zM21,17h2v2h-2z"/>
+</vector>

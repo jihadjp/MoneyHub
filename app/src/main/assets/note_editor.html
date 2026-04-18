@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<!--
+  assets/note_editor.html
+  Loaded by NoteEditorActivity's WebView.
+
+  The #editor div is a contenteditable region that supports:
+    • Full HTML from document.execCommand()
+    • Nested ordered/unordered lists
+    • Inline styles (bold, italic, underline, color, highlight)
+    • Checkboxes via custom insertCheckbox()
+
+  The Android layer injects content with:
+    document.getElementById('editor').innerHTML = `...`;
+  And reads it back with:
+    document.getElementById('editor').innerHTML
+-->
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<style>
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    padding: 0 20px 80px 20px;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #1C1B1F;
+    background: transparent;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  #editor {
+    min-height: 100vh;
+    outline: none;
+    caret-color: #6750A4;
+    white-space: pre-wrap;
+    padding-bottom: 200px;
+    -webkit-user-select: text;
+    user-select: text;
+    cursor: text;
+  }
+
+  /* ── Lists ────────────────────────────────────────────────────────── */
+  ul, ol {
+    padding-left: 24px;
+    margin: 4px 0;
+  }
+
+  li {
+    margin: 2px 0;
+    line-height: 1.6;
+  }
+
+  /* ── Checkboxes (To-Do) ──────────────────────────────────────────── */
+  .checkbox-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 3px 0;
+    padding: 4px 0;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+  }
+
+  .checkbox-item input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    margin-top: 2px;
+    border: 2px solid #79747E;
+    border-radius: 6px;
+    background: transparent;
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  .checkbox-item input[type="checkbox"]:checked {
+    background: #6750A4;
+    border-color: #6750A4;
+  }
+
+  .checkbox-item input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 6px;
+    height: 11px;
+    border: solid white;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+  }
+
+  .checkbox-item > span {
+    flex: 1;
+    min-height: 24px;
+    line-height: 1.6;
+    outline: none;
+    transition: color 0.25s ease, text-decoration-color 0.25s ease;
+  }
+
+  .checkbox-item.checked > span {
+    text-decoration: line-through;
+    text-decoration-color: #79747E;
+    color: #9E9E9E;
+  }
+
+  /* ── Placeholder ──────────────────────────────────────────────────── */
+  #editor:empty:before {
+    content: attr(data-placeholder);
+    color: #79747E;
+    pointer-events: none;
+  }
+
+  /* ── Blockquote ───────────────────────────────────────────────────── */
+  blockquote {
+    border-left: 3px solid #6750A4;
+    margin: 8px 0;
+    padding-left: 12px;
+    color: #49454F;
+    font-style: italic;
+  }
+
+  /* ── Code ─────────────────────────────────────────────────────────── */
+  code {
+    background: #F3EDF7;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 0.9em;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* ── Links ────────────────────────────────────────────────────────── */
+  a {
+    color: #1565C0;
+    text-decoration: underline;
+    word-break: break-all;
+    cursor: pointer;
+  }
+  a:visited { color: #6A1B9A; }
+</style>
+</head>
+<body>
+  <div
+    id="editor"
+    contenteditable="true"
+    data-placeholder="Start typing your note…"
+    spellcheck="true">
+  </div>
+
+  <script>
+    // ── Prevent page scroll hijacking ────────────────────────────────────
+    document.body.addEventListener('touchmove', function(e) {
+      // Allow default scroll behavior
+    }, { passive: true });
+
+    // ── Toggle checkbox (To-Do) — works like insertUnorderedList toggle ──
+    function toggleCheckbox() {
+      var existing = getParentCheckboxItem();
+      if (existing) {
+        // Already a checkbox → convert back to plain text (like un-toggling a list)
+        convertCheckboxToText(existing);
+      } else {
+        // Not a checkbox → convert current line to checkbox (like toggling a list)
+        convertLineToCheckbox();
+      }
+      // Notify Android for auto-save
+      if (window.Android && window.Android.onContentChanged) {
+        window.Android.onContentChanged();
+      }
+    }
+
+    // Find the closest .checkbox-item ancestor of the current selection
+    function getParentCheckboxItem() {
+      var sel = window.getSelection();
+      if (!sel.rangeCount) return null;
+      var node = sel.anchorNode;
+      while (node && node !== document.getElementById('editor')) {
+        if (node.nodeType === 1 && node.classList && node.classList.contains('checkbox-item')) {
+          return node;
+        }
+        node = node.parentNode;
+      }
+      return null;
+    }
+
+    // Get the block-level parent of the cursor (div, p, or direct text in editor)
+    function getCurrentBlock() {
+      var sel = window.getSelection();
+      if (!sel.rangeCount) return null;
+      var node = sel.anchorNode;
+      var editor = document.getElementById('editor');
+      // Walk up to find the direct child of #editor
+      while (node && node.parentNode !== editor) {
+        node = node.parentNode;
+      }
+      return node;
+    }
+
+    // Convert a plain text line → checkbox-item (keeps existing text)
+    function convertLineToCheckbox() {
+      var block = getCurrentBlock();
+      var editor = document.getElementById('editor');
+
+      // Grab existing text from the current block
+      var existingText = '';
+      if (block && block !== editor) {
+        existingText = block.textContent || '';
+      }
+
+      // Build checkbox div
+      var div = document.createElement('div');
+      div.className = 'checkbox-item';
+
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      attachCheckboxListeners(div, cb);
+
+      var span = document.createElement('span');
+      span.contentEditable = 'true';
+      span.textContent = existingText || '\u200B';
+      attachSpanKeyListeners(div, span);
+
+      div.appendChild(cb);
+      div.appendChild(span);
+
+      // Replace existing block, or append if nothing
+      if (block && block !== editor && block.parentNode === editor) {
+        editor.replaceChild(div, block);
+      } else {
+        // No block found — just append
+        editor.appendChild(div);
+      }
+
+      // Place cursor at end of span text
+      var r = document.createRange();
+      r.selectNodeContents(span);
+      r.collapse(false);
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+      span.focus();
+    }
+
+    // Convert checkbox-item → plain text div (keeps text)
+    function convertCheckboxToText(item) {
+      var span = item.querySelector('span');
+      var text = span ? span.textContent.replace(/\u200B/g, '') : '';
+      var parent = item.parentNode;
+
+      var p = document.createElement('div');
+      p.innerHTML = text.trim() ? text : '<br>';
+      parent.replaceChild(p, item);
+
+      // Place cursor at end
+      var r = document.createRange();
+      r.selectNodeContents(p);
+      r.collapse(false);
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+      p.focus();
+    }
+
+    // Attach change listener to a checkbox input
+    function attachCheckboxListeners(div, cb) {
+      cb.addEventListener('change', function() {
+        if (this.checked) {
+          div.classList.add('checked');
+          this.setAttribute('checked', 'checked');
+        } else {
+          div.classList.remove('checked');
+          this.removeAttribute('checked');
+        }
+        if (window.Android && window.Android.onContentChanged) {
+          window.Android.onContentChanged();
+        }
+      });
+    }
+
+    // Attach Enter/Backspace key listeners to a checkbox span
+    function attachSpanKeyListeners(div, span) {
+      span.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          var text = span.textContent.replace(/\u200B/g, '').trim();
+          if (!text) {
+            // Empty checkbox + Enter → remove checkbox, insert normal line
+            convertCheckboxToText(div);
+          } else {
+            // Has text + Enter → insert a NEW empty checkbox below
+            insertNewCheckboxAfter(div);
+          }
+        }
+        if (e.key === 'Backspace') {
+          var text = span.textContent.replace(/\u200B/g, '').trim();
+          if (!text) {
+            e.preventDefault();
+            var prev = div.previousElementSibling || div.previousSibling;
+            convertCheckboxToText(div);
+          }
+        }
+      });
+    }
+
+    // Insert a brand new empty checkbox after a given checkbox-item
+    function insertNewCheckboxAfter(afterItem) {
+      var editor = document.getElementById('editor');
+      var div = document.createElement('div');
+      div.className = 'checkbox-item';
+
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      attachCheckboxListeners(div, cb);
+
+      var span = document.createElement('span');
+      span.contentEditable = 'true';
+      span.innerHTML = '\u200B';
+      attachSpanKeyListeners(div, span);
+
+      div.appendChild(cb);
+      div.appendChild(span);
+
+      // Insert after the current checkbox
+      if (afterItem.nextSibling) {
+        afterItem.parentNode.insertBefore(div, afterItem.nextSibling);
+      } else {
+        afterItem.parentNode.appendChild(div);
+      }
+
+      // Focus the new span
+      var r = document.createRange();
+      r.selectNodeContents(span);
+      r.collapse(false);
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+      span.focus();
+    }
+
+    // ── Rebind checkboxes (after content load from saved notes) ──────────
+    function rebindCheckboxes() {
+      var items = document.querySelectorAll('.checkbox-item');
+      for (var i = 0; i < items.length; i++) {
+        (function(item) {
+          var cb = item.querySelector('input[type="checkbox"]');
+          var span = item.querySelector('span');
+          if (!cb || !span) return;
+
+          // Restore checked state from attribute (innerHTML saves attribute)
+          var isChecked = cb.hasAttribute('checked');
+          cb.checked = isChecked;
+          if (isChecked) {
+            item.classList.add('checked');
+          } else {
+            item.classList.remove('checked');
+          }
+
+          // Re-attach listeners using shared helpers
+          cb.onchange = null;
+          attachCheckboxListeners(item, cb);
+          span.contentEditable = 'true';
+          attachSpanKeyListeners(item, span);
+        })(items[i]);
+      }
+    }
+
+    // ── Tap anywhere to place cursor ──────────────────────────────────────
+    // Tapping empty space (body or below content) focuses editor at nearest position
+    document.body.addEventListener('click', function(e) {
+      var editor = document.getElementById('editor');
+
+      // If tapped on body (not on editor), focus editor at end
+      if (e.target === document.body) {
+        editor.focus();
+        placeCursorAtEnd(editor);
+        return;
+      }
+    });
+
+    // Tapping in the editor's empty padding area (below actual content)
+    document.getElementById('editor').addEventListener('click', function(e) {
+      var editor = document.getElementById('editor');
+
+      // If the click target is the editor div itself (not a child element),
+      // it means user tapped on empty area — place cursor at end
+      if (e.target === editor) {
+        // Check if click is below last child
+        var lastChild = editor.lastElementChild || editor.lastChild;
+        if (lastChild) {
+          var lastRect = lastChild.getBoundingClientRect();
+          if (e.clientY > lastRect.bottom) {
+            // Tapped below content — place cursor at end
+            placeCursorAtEnd(editor);
+            return;
+          }
+        }
+        // Otherwise try to use caretPositionFromPoint / caretRangeFromPoint
+        placeCursorFromPoint(e.clientX, e.clientY, editor);
+      }
+    });
+
+    function placeCursorAtEnd(editor) {
+      // Ensure there's something to place cursor on
+      ensureTrailingBr(editor);
+      var range = document.createRange();
+      var sel = window.getSelection();
+      range.selectNodeContents(editor);
+      range.collapse(false);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+
+    function placeCursorFromPoint(x, y, editor) {
+      var range = null;
+      if (document.caretRangeFromPoint) {
+        range = document.caretRangeFromPoint(x, y);
+      } else if (document.caretPositionFromPoint) {
+        var pos = document.caretPositionFromPoint(x, y);
+        if (pos) {
+          range = document.createRange();
+          range.setStart(pos.offsetNode, pos.offset);
+          range.collapse(true);
+        }
+      }
+      if (range) {
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      } else {
+        placeCursorAtEnd(editor);
+      }
+      editor.focus();
+    }
+
+    // Ensure editor always has a trailing <br> so cursor can be placed after last element
+    function ensureTrailingBr(editor) {
+      var last = editor.lastChild;
+      if (!last || (last.nodeType === 1 && last.tagName !== 'BR'
+          && last.classList && last.classList.contains('checkbox-item'))) {
+        editor.appendChild(document.createElement('br'));
+      }
+    }
+
+    // ── Prevent default tab behavior ─────────────────────────────────────
+    document.getElementById('editor').addEventListener('keydown', function(e) {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        document.execCommand('insertHTML', false, '&nbsp;&nbsp;&nbsp;&nbsp;');
+      }
+    });
+
+    // ── Report formatting state to Android ───────────────────────────────
+    // Called on every cursor move / selection change so toolbar buttons
+    // can show their selected state (like bold active, list active, etc.)
+    function queryFormatState() {
+      if (!window.Android || !window.Android.onFormatStateChanged) return;
+      var state = {
+        bold:          document.queryCommandState('bold'),
+        italic:        document.queryCommandState('italic'),
+        underline:     document.queryCommandState('underline'),
+        strikeThrough: document.queryCommandState('strikeThrough'),
+        orderedList:   document.queryCommandState('insertOrderedList'),
+        unorderedList: document.queryCommandState('insertUnorderedList'),
+        checkbox:      !!getParentCheckboxItem()
+      };
+      window.Android.onFormatStateChanged(JSON.stringify(state));
+    }
+
+    // Listen for cursor / selection changes
+    document.addEventListener('selectionchange', function() {
+      queryFormatState();
+    });
+
+    // Also report after every input
+    document.getElementById('editor').addEventListener('input', function() {
+      setTimeout(queryFormatState, 50);
+    });
+
+    // ── Auto-linkify: detect URLs on input and convert to <a> tags ──────
+    // Regex that matches http/https/www URLs
+    var URL_RE = /(?:https?:\/\/|www\.)[^\s<>"'`,;!?\)\]]+/gi;
+
+    // Debounce timer for linkify
+    var linkifyTimer = null;
+
+    document.getElementById('editor').addEventListener('input', function() {
+      clearTimeout(linkifyTimer);
+      linkifyTimer = setTimeout(autoLinkify, 400);
+    });
+
+    function autoLinkify() {
+      var editor = document.getElementById('editor');
+      // Save cursor position
+      var sel = window.getSelection();
+      var savedRange = null;
+      if (sel.rangeCount > 0) {
+        savedRange = sel.getRangeAt(0).cloneRange();
+      }
+
+      walkTextNodes(editor);
+
+      // Restore cursor position
+      if (savedRange) {
+        try {
+          sel.removeAllRanges();
+          sel.addRange(savedRange);
+        } catch(e) {}
+      }
+    }
+
+    function walkTextNodes(root) {
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+      var textNodes = [];
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+      for (var i = 0; i < textNodes.length; i++) {
+        var node = textNodes[i];
+        // Skip if already inside an <a> tag
+        if (isInsideAnchor(node)) continue;
+
+        var text = node.nodeValue;
+        URL_RE.lastIndex = 0;
+        var match = URL_RE.exec(text);
+        if (!match) continue;
+
+        // Found a URL — only linkify if there's a space/break after it
+        // (means user finished typing the URL)
+        var afterUrl = text.substring(match.index + match[0].length);
+        if (afterUrl.length === 0) continue; // still typing
+
+        var url = match[0];
+        var href = url;
+        if (href.indexOf('://') === -1) href = 'https://' + href;
+
+        // Split the text node and insert an <a> element
+        var beforeText = text.substring(0, match.index);
+        var afterText  = text.substring(match.index + url.length);
+
+        var beforeNode = document.createTextNode(beforeText);
+        var afterNode  = document.createTextNode(afterText);
+
+        var a = document.createElement('a');
+        a.href = href;
+        a.textContent = url;
+        a.setAttribute('target', '_blank');
+
+        var parent = node.parentNode;
+        parent.insertBefore(beforeNode, node);
+        parent.insertBefore(a, node);
+        parent.insertBefore(afterNode, node);
+        parent.removeChild(node);
+      }
+    }
+
+    function isInsideAnchor(node) {
+      var p = node.parentNode;
+      while (p && p !== document.body) {
+        if (p.tagName === 'A') return true;
+        p = p.parentNode;
+      }
+      return false;
+    }
+
+    // ── Link click handling ─────────────────────────────────────────────
+    // In editing mode, intercept link clicks and ask Android to open them
+    document.getElementById('editor').addEventListener('click', function(e) {
+      var target = e.target;
+      if (target.tagName === 'A' && target.href) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (window.Android && window.Android.onLinkClicked) {
+          window.Android.onLinkClicked(target.href);
+        }
+      }
+    });
+
+    // ── Manual link insert (called from Android) ────────────────────────
+    function insertLink(url, text) {
+      var href = url;
+      if (href.indexOf('://') === -1) href = 'https://' + href;
+      var label = text || url;
+      var html = '<a href="' + href + '">' + label + '</a>&nbsp;';
+      document.execCommand('insertHTML', false, html);
+    }
+  </script>
+</body>
+</html>

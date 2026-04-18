@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ── Splash / Home theme ───────────────────────────────────────────── -->
+    <style name="ThemeHome" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorPrimaryDark">@color/primary_variant_light</item>
+        <item name="colorAccent">@color/secondary_light</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/applogo</item>
+    </style>
+
+    <!-- ── Video Player ───────────────────────────────────────────────────── -->
+    <style name="ThemeVideoPlayer" parent="Theme.Material3.DayNight.BottomSheetDialog">
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorOnPrimary">@color/on_primary_light</item>
+        <item name="colorSecondary">@color/secondary_light</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- ── Card with no ripple ────────────────────────────────────────────── -->
+    <style name="NoRippleMaterialCard" parent="Widget.Material3.CardView.Elevated">
+        <item name="android:foreground">@android:color/transparent</item>
+        <item name="rippleColor">@android:color/transparent</item>
+    </style>
+
+    <!-- ── Toolbar title ──────────────────────────────────────────────────── -->
+    <style name="CustomToolbarTitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:fontFamily">@font/kalpurush</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- ── Dialog animations ──────────────────────────────────────────────── -->
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
+
+    <style name="DialogAnimationFromLeft">
+        <item name="android:windowEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_right</item>
+    </style>
+
+    <style name="DialogAnimationFromRight">
+        <item name="android:windowEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_right</item>
+    </style>
+
+    <!-- ── Note editor formatting toolbar button ─────────────────────────── -->
+    <style name="FormatButton">
+        <item name="android:layout_width">44dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:background">@drawable/bg_format_button_selectable</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:tint">@color/format_btn_tint</item>
+    </style>
+
+    <!-- ── Note editor formatting toolbar divider ────────────────────────── -->
+    <style name="ToolbarDivider">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_marginHorizontal">4dp</item>
+        <item name="android:background">?attr/colorOutlineVariant</item>
+    </style>
+
+    <!-- ── Nav drawer title ───────────────────────────────────────────────── -->
+    <style name="NavMenuTitleText" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/kalpurush</item>
+    </style>
+
+    <!-- ── Bottom nav text ───────────────────────────────────────────────── -->
+    <style name="BottomNavItemTextStyle" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:fontFamily">@font/liadornoirit</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- ── YouTube fullscreen dialog ─────────────────────────────────────── -->
+    <style name="FullScreenDialogYoutube" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@style/DialogAnimationFromRight</item>
+    </style>
+
+    <!-- ── Icon button ───────────────────────────────────────────────────── -->
+    <style name="IconButtonStyle" parent="Widget.Material3.Button.TextButton">
+        <item name="iconGravity">textStart</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:minWidth">32dp</item>
+        <item name="android:minHeight">32dp</item>
+    </style>
+
+</resources>

@@ -16,4 +16,287 @@
 
     <color name="bg_light_gray">#F5F5F5</color>
     <color name="divider_gray">#BDBDBD</color>
-</resources>
+
+    <!-- Note Colors -->
+    <color name="note_badge_bg">#80000000</color>
+
+    <!-- UI States -->
+    <color name="ripple_color">#20000000</color>
+    <color name="transparent">#00000000</color>
+
+        <color name="txt">#FFF8DB</color>
+        <color name="videolistbg">#B2DFDB</color>
+
+
+        <color name="web_top">#FF9800</color>
+        <color name="complete">#94B366</color>
+        <color name="radio_button_tint">#7D5801</color>
+        <color name="mic2">#0C3E59</color>
+        <color name="bgcareer">#049581</color>
+        <!-- res/values/colors.xml -->
+
+        <color name="purple_200">#FFBB86FC</color>
+        <color name="purple_500">#FF6200EE</color>
+        <color name="purple_700">#FF3700B3</color>
+        <color name="teal_200">#FF03DAC5</color>
+        <color name="teal_700">#FF018786</color>
+        <color name="white1">#FFFFFF</color>
+        <color name="app_title">#FFFFFF</color>
+        <color name="text_title">#FFFFFF</color>
+        <color name="icon_bg">#FFFFFF</color>
+        <color name="icon_lay_bg">#2B5D52</color>
+        <color name="alert_text">#F9D6D6</color>
+        <color name="colorPrimary">#008577</color>
+        <color name="colorAccent">#D81B60</color>
+
+
+
+
+        <color name="dark_bg">#1A6642</color>
+        <color name="halka_dark_bg">#4A6B63</color>
+        <color name="halka_green_bg">#4E9888  </color>
+        <!--    <color name="halka_green_bg">#3D7A6D </color>-->
+        <!--    <color name="bg">#00B4B4 </color>-->
+        <!--    <color name="bg">#0AC8B4</color>-->
+        <color name="green_bg">#2bbe74</color>
+        <color name="bg">#2B5D52</color>
+
+        <color name="blue_bg">#038CD0</color>
+        <color name="bbg">#121827</color>
+        <color name="main_bg">#1f2a3f</color>
+        <color name="bg_items">#1F2937</color>
+        <color name="tt">#FD6050</color>
+        <color name="ttt">#DB4B86</color>
+        <!--    <color name="bg">#00A67D</color>-->
+        <!--    <color name="bg">#00838F</color>-->
+        <color name="bgg">#164863</color>
+        <color name="backgroundapp">#058789</color>
+        <color name="mic">#098F84</color>
+        <!--    <color name="mic">#00838F</color>-->
+        <!--    <color name="mic">#164863</color>-->
+        <color name="bug">#00838F</color>
+        <color name="colorPrimaryDark">#058789</color>
+        <!--    <color name="bg">#0A8F84</color>-->
+        <color name="abg">#008694</color>
+
+
+        <color name="green">#4CAF50</color>
+        <color name="red">#FF0000</color>
+        <color name="error_color">#F44336</color>
+        <color name="text_red">#E21F3C</color>
+        <color name="tablebg">#80000000</color>
+        <color name="toggle_bg">#1F2937</color>
+
+        <color name="text_color">#000000</color>
+        <color name="background_color">#673AB7</color>
+        <color name="background">#F3E4BA</color>
+        <color name="shadow_color_top">#EFD079</color>
+        <color name="shadow_color_bottom">#F6F4F1</color>
+        <color name="slider_title_background">#40000000</color>
+        <color name="thankYou_title">#FF9800</color>
+        <color name="thankYou_title2">#E53935</color>
+        <color name="thankYou_des">#9E9393</color>
+        <color name="thankYou_des2">#0E7E98</color>
+        <color name="my_dark_primary">#111625</color>
+        <!-- res/values/colors.xml -->
+        <color name="darkBackgroundtext">#1a1a1a</color>
+        <color name="darkBackground">#1a1a1a</color>
+        <color name="noticebg">#E21F61</color>
+        <color name="textbg">#A8E9D7</color>
+        <!--    <color name="textbg">#EAFDEA</color>-->
+        <color name="textmobilecolor">#780A0A</color>
+        <color name="textsimcodecolor">#E82929</color>
+        <color name="texttitlecolor">#0A8C3E</color>
+        <color name="itemtextcall">#3BD2AE</color>
+
+
+        <color name="lavender">#8692f7</color>
+
+        <color name="ramadan">#31303A</color>
+        <color name="item">#EAFDEA</color>
+        <color name="bggg">#0F7986</color>
+
+        <color name="selected_color">#8E44AD</color>  <!-- Purple color -->
+        <color name="unselected_color">#BDC3C7</color>  <!-- Gray color -->
+        <color name="unselected_color2">#f9f9f9</color>  <!-- Gray color -->
+
+        <color name="offwhite">#F8F8F8</color>  <!-- Gray color -->
+        <color name="snow">#FFFAFA</color>  <!-- Gray color -->
+        <color name="ivory">#FFFFF0</color>  <!-- Gray color -->
+        <color name="ghost">#F8F8FF</color>  <!-- Gray color -->
+        <color name="whitesmoke">#F5F5F5</color>  <!-- Gray color -->
+        <color name="gainsboro">#DCDCDC</color>  <!-- Gray color -->
+        <color name="light_blue">#E3F2FD</color>        <!-- হালকা নীল ব্যাকগ্রাউন্ড -->
+        <color name="light_gradient">#BBDEFB</color>    <!-- হালকা গ্র্যাডিয়েন্ট ওভারলে -->
+
+        <color name="soft_blue">#90CAF9</color>         <!-- Wave Layer 1 -->
+        <color name="main_light_blue">#64B5F6</color>  <!-- Wave Layer 2 -->
+        <color name="pale_blue">#42A5F5</color>        <!-- Wave Layer 3 -->
+
+        <color name="textcolor">#666666</color>
+
+
+        <color name="primary_green">#147D48</color>
+        <color name="pgreen">#009C77</color>
+        <color name="phalkagreen">#D5EDD7</color>
+        <color name="itemamalbg">#C8E6CA</color>
+        <color name="item_profile">#CCEAE8</color>
+        <color name="light_green">#DFF3E4</color>
+        <color name="button_green">#008D4E</color>
+        <color name="text_color2">#222222</color>
+        <color name="tard_background">#F5FFF8</color>
+        <color name="border_color">#CDE8D6</color>
+        <color name="halka_green">#CDE6CD</color>
+
+
+        <color name="primary">#2196F3</color>
+        <color name="primaryDark">#1976D2</color>
+        <color name="primaryLight">#BBDEFB</color>
+        <color name="light_gray">#D3D3D3</color>
+
+        <color name="headertitlebg">#4FC3F7</color>
+        <color name="headersubtitlebg">#81C784</color>
+        <color name="seeall">#9FC8D6</color>
+        <color name="appversionbg">#9FC8D6</color>
+
+        <color name="bg_white">#E6F0FF</color>
+        <color name="nav">#666666</color>
+        <color name="white2">#F5F5F5</color>
+        <!--    <color name="item">#55679C</color>-->
+
+        <color name="bg1">#4BA9E7</color>
+        <color name="bg2">#4E9888</color>
+
+
+
+        <color name="bghome">#121e28</color>
+        <!--    <color name="bg">#000A33</color>-->
+        <color name="itembg">#006766</color>
+        <!--    <color name="bg">#0A8F84</color>-->
+        <color name="toolbg">#006766</color>
+        <color name="bgitem">#CB006766</color>
+
+
+        <!-- res/values/colors.xml -->
+        <color name="gulau_medium">#80CBC4</color>
+        <color name="selected_item_background">#FFD54F</color> <!-- হালকা হলুদ -->
+        <color name="selectedColor">#E0E0E0</color>
+        <color name="unselectedColor">#FFFFFF</color>
+        <color name="link">#0000FF</color>
+        <color name="bg_nav_footer">#d5d8dc</color>
+        <color name="gold_yellow">#FCC300</color>
+        <color name="gray">#888888</color>
+        <color name="color1">#E419EC</color>
+        <color name="color2">#FFFFFF</color>
+        <color name="color3">#eedd82 </color>
+        <color name="color4">#17F6FA</color>
+        <color name="color5">#00FF00</color>
+        <color name="color6">#EB070B</color>
+        <color name="color7">#F4C5D8</color>
+        <color name="color8">#3FE2F1</color>
+        <color name="color9">#E5A635</color>
+        <color name="color10">#DD82EE</color>
+        <color name="color11">#FFFF00</color>
+        <color name="navcolor">#009688</color>
+
+
+
+        <color name="color_1">#fffff0</color>
+        <color name="color_2">#C8E6C9</color>
+        <color name="color_3">#E6E6FA</color>
+        <color name="color_4">#FFF0F5</color>
+        <color name="color_5">#ffffe0</color>
+        <color name="color_6">#FFFACD</color>
+        <color name="color_7">#ADD8E6</color>
+        <color name="color_8">#F08080</color>
+        <color name="color_9">#E0FFFF</color>
+        <color name="color_10">#FAFAD2</color>
+        <color name="color_11">#D3D3D3</color>
+        <color name="color_12">#90EE90</color>
+        <color name="color_13">#D3D3D3</color>
+        <color name="color_14">#FFB6C1</color>
+        <color name="color_15">#FFA07A</color>
+        <color name="color_16">#20B2AA</color>
+        <color name="color_17">#87Cefa</color>
+        <color name="color_18">#778899</color>
+        <color name="color_19">#b0c4de</color>
+        <color name="color_20">#fffff0</color>
+
+        <!-- Items colors -->
+        <color name="item1_startcolor">#2B8A6B</color>
+        <color name="item1_centerColor">#3CCB8A</color>
+        <color name="item1_endColor">#97F6A8</color>
+
+        <!-- Premium Palette -->
+        <color name="primary_light">#2196F3</color>
+        <color name="primary_variant_light">#1976D2</color>
+        <color name="on_primary_light">#FFFFFF</color>
+        <color name="secondary_light">#03DAC6</color>
+        <color name="on_secondary_light">#000000</color>
+        <color name="background_light">#F8F9FA</color>
+        <color name="surface_light">#FFFFFF</color>
+        <color name="on_surface_light">#212121</color>
+
+        <color name="primary_dark">#90CAF9</color>
+        <color name="primary_variant_dark">#64B5F6</color>
+        <color name="on_primary_dark">#000000</color>
+        <color name="secondary_dark">#03DAC6</color>
+        <color name="on_secondary_dark">#000000</color>
+        <color name="background_dark">#121212</color>
+        <color name="surface_dark">#1E1E1E</color>
+        <color name="on_surface_dark">#E0E0E0</color>
+
+        <!-- UI Colors -->
+        <color name="error">#B00020</color>
+
+
+
+        <!-- ── Light tokens ──────────────────────────────────────────────── -->
+        <color name="md_theme_light_primary">#6750A4</color>
+        <color name="md_theme_light_onPrimary">#FFFFFF</color>
+        <color name="md_theme_light_primaryContainer">#EADDFF</color>
+        <color name="md_theme_light_onPrimaryContainer">#21005D</color>
+
+        <color name="md_theme_light_secondary">#625B71</color>
+        <color name="md_theme_light_onSecondary">#FFFFFF</color>
+        <color name="md_theme_light_secondaryContainer">#E8DEF8</color>
+        <color name="md_theme_light_onSecondaryContainer">#1D192B</color>
+
+        <color name="md_theme_light_tertiary">#7D5260</color>
+        <color name="md_theme_light_onTertiary">#FFFFFF</color>
+
+        <color name="md_theme_light_error">#B3261E</color>
+        <color name="md_theme_light_onError">#FFFFFF</color>
+
+        <color name="md_theme_light_surface">#FFFBFE</color>
+        <color name="md_theme_light_onSurface">#1C1B1F</color>
+        <color name="md_theme_light_surfaceVariant">#E7E0EC</color>
+        <color name="md_theme_light_onSurfaceVariant">#49454F</color>
+        <color name="md_theme_light_surfaceContainer">#F3EDF7</color>
+
+        <color name="md_theme_light_outline">#79747E</color>
+        <color name="md_theme_light_outlineVariant">#CAC4D0</color>
+
+        <!-- ── Dark tokens ───────────────────────────────────────────────── -->
+        <color name="md_theme_dark_primary">#D0BCFF</color>
+        <color name="md_theme_dark_onPrimary">#381E72</color>
+        <color name="md_theme_dark_primaryContainer">#4F378B</color>
+        <color name="md_theme_dark_onPrimaryContainer">#EADDFF</color>
+
+        <color name="md_theme_dark_surface">#10090D</color>
+        <color name="md_theme_dark_onSurface">#E6E1E5</color>
+        <color name="md_theme_dark_surfaceContainer">#211F26</color>
+
+        <color name="md_theme_dark_outline">#938F99</color>
+        <color name="md_theme_dark_outlineVariant">#49454F</color>
+
+        <!-- ── Semantic ───────────────────────────────────────────────────── -->
+        <!-- Card stroke: 10% black in light, transparent in dark -->
+        <color name="note_card_stroke">#1A000000</color>
+
+        <!-- Badge background -->
+        <color name="badge_background">#80000000</color>
+
+
+
+    </resources>

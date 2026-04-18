@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- item_color_swatch.xml – one color circle in the picker grid -->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_columnWeight="1"
+    android:padding="10dp"
+    android:foreground="?attr/selectableItemBackgroundBorderless">
+
+    <!-- Colour circle -->
+    <View
+        android:id="@+id/colorCircle"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center" />
+
+    <!-- Checkmark (visible when selected) -->
+    <ImageView
+        android:id="@+id/checkmark"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_check"
+        android:tint="#FFFFFF"
+        android:visibility="gone"
+        android:contentDescription="Selected" />
+
+</FrameLayout>

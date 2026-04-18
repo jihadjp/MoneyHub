@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface">
+
+    <!-- ── Top toolbar ──────────────────────────────────────────────────── -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="?attr/colorOnSurface">
+
+            <!-- Color swatch dot -->
+            <View
+                android:id="@+id/colorIndicator"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_color_circle"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- ── Scrollable body ──────────────────────────────────────────────── -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Title -->
+            <EditText
+                android:id="@+id/titleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:fontFamily="@font/liadornoirit"
+                android:hint="Title"
+                android:inputType="textCapSentences|textMultiLine"
+                android:lineSpacingExtra="4dp"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"
+                android:textColor="?attr/colorOnSurface"
+                android:textColorHint="?attr/colorOutline"
+                android:textSize="22sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="?attr/colorOutlineVariant" />
+
+            <!-- ── WebView ───────────────────────────────────────────────── -->
+            <com.jptechgenius.moneyhub.notes.ui.PasteAwareWebView
+                android:id="@+id/contentWebView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minHeight="320dp"
+                android:background="@android:color/transparent"
+                android:scrollbars="none" />
+
+            <!-- ── Label chips ───────────────────────────────────────────── -->
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/labelsChipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="4dp"
+                android:visibility="gone"
+                app:chipSpacingHorizontal="4dp"
+                app:chipSpacingVertical="4dp" />
+
+            <!-- ── Media toggle bar ──────────────────────────────────────── -->
+            <LinearLayout
+                android:id="@+id/mediaToggleBar"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginHorizontal="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_format_button_selectable"
+                android:paddingHorizontal="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_image"
+                    android:importantForAccessibility="no" />
+
+                <TextView
+                    android:id="@+id/mediaToggleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="Attachments"
+                    android:textSize="13sp"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
+
+                <ImageView
+                    android:id="@+id/mediaToggleArrow"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron_down"
+                    android:importantForAccessibility="no" />
+
+            </LinearLayout>
+
+            <!-- ── Collapsible media panel ─────────────────────────────────── -->
+            <LinearLayout
+                android:id="@+id/mediaPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- ── Images strip ──────────────────────────────────────── -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/imagesRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="4dp"
+                    android:clipToPadding="false"
+                    android:paddingHorizontal="16dp"
+                    android:scrollbars="none"
+                    android:visibility="gone" />
+
+                <!-- ── Videos strip ──────────────────────────────────────── -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/videosRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="4dp"
+                    android:clipToPadding="false"
+                    android:paddingHorizontal="16dp"
+                    android:scrollbars="none"
+                    android:visibility="gone" />
+
+                <!-- ── Voice memos list ──────────────────────────────────── -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/voicesRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:nestedScrollingEnabled="false"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <!-- Bottom padding — clears the formatting toolbar -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="56dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- ── Floating formatting toolbar (stays above keyboard) ───────────── -->
+    <HorizontalScrollView
+        android:id="@+id/formattingToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"
+        android:background="?attr/colorSurfaceContainer"
+        android:elevation="8dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="8dp">
+
+            <!-- Media group -->
+            <ImageButton android:id="@+id/btnAddImage"
+                style="@style/FormatButton"
+                android:src="@drawable/ic_image"
+                android:contentDescription="Add image" />
+
+            <ImageButton android:id="@+id/btnPasteImage"
+                style="@style/FormatButton"
+                android:src="@drawable/ic_content_paste"
+                android:contentDescription="Paste image" />
+
+            <ImageButton android:id="@+id/btnAddVideo"
+                style="@style/FormatButton"
+                android:src="@drawable/ic_video"
+                android:contentDescription="Add video" />
+
+            <ImageButton android:id="@+id/btnAddVoice"
+                style="@style/FormatButton"
+                android:src="@drawable/ic_mic"
+                android:contentDescription="Record voice memo" />
+
+            <View style="@style/ToolbarDivider" />
+
+
+            <ImageButton android:id="@+id/btnOcrCamera"
+                style="@style/FormatButton"
+                android:src="@drawable/ic_scan_image"
+                android:contentDescription="Scan text from image" />
+
+            <!-- Link -->
+            <ImageButton android:id="@+id/btnInsertLink"
+                style="@style/FormatButton"
+                android:src="@drawable/ic_link"
+                android:contentDescription="Insert link" />
+
+
+            <View style="@style/ToolbarDivider" />
+
+
+            <!-- Lists -->
+            <ImageButton android:id="@+id/btnBulletList"
+                style="@style/FormatButton"
+                android:src="@drawable/ic_format_list_bulleted"
+                android:contentDescription="Bullet list" />
+
+            <ImageButton android:id="@+id/btnOrderedList"
+                style="@style/FormatButton"
+                android:src="@drawable/ic_format_list_numbered"
+                android:contentDescription="Ordered list" />
+
+            <ImageButton android:id="@+id/btnCheckbox"
+                style="@style/FormatButton"
+                android:src="@drawable/ic_checklist"
+                android:contentDescription="To-do checklist" />
+
+            <View style="@style/ToolbarDivider" />
+
+            <!-- Color -->
+            <ImageButton android:id="@+id/btnTextColor"
+                style="@style/FormatButton"
+                android:src="@drawable/ic_format_color_text"
+                android:contentDescription="Text color" />
+
+            <ImageButton android:id="@+id/btnHighlight"
+                style="@style/FormatButton"
+                android:src="@drawable/ic_format_color_fill"
+                android:contentDescription="Highlight" />
+
+            <View style="@style/ToolbarDivider" />
+
+            <!-- Text style -->
+            <ImageButton android:id="@+id/btnBold"
+                style="@style/FormatButton"
+                android:src="@drawable/ic_format_bold"
+                android:contentDescription="Bold" />
+
+            <ImageButton android:id="@+id/btnItalic"
+                style="@style/FormatButton"
+                android:src="@drawable/ic_format_italic"
+                android:contentDescription="Italic" />
+
+            <ImageButton android:id="@+id/btnUnderline"
+                style="@style/FormatButton"
+                android:src="@drawable/ic_format_underline"
+                android:contentDescription="Underline" />
+
+            <ImageButton android:id="@+id/btnStrikethrough"
+                style="@style/FormatButton"
+                android:src="@drawable/ic_format_strikethrough"
+                android:contentDescription="Strikethrough" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

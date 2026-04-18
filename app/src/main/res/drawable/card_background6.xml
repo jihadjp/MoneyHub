@@ -1,0 +1,10 @@
+<!-- card_gradient_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="45"
+        android:startColor="#2B8A6B"
+        android:endColor="#97F6A8"
+        android:type="linear" />
+    <corners android:radius="5dp" />
+</shape>

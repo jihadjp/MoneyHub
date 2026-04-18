@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- ── View switcher ── -->
+    <item
+        android:id="@+id/action_active"
+        android:title="📝  Notes"
+        android:icon="@drawable/ic_notes" />
+    <item
+        android:id="@+id/action_archived"
+        android:title="🗄  Archive"
+        android:icon="@drawable/ic_archive" />
+    <item
+        android:id="@+id/action_trash"
+        android:title="🗑  Trash"
+        android:icon="@drawable/ic_delete" />
+
+    <!-- ── Divider ── -->
+    <item
+        android:id="@+id/divider1"
+        android:title=""
+        android:enabled="false" />
+
+    <!-- ── Actions ── -->
+    <item
+        android:id="@+id/action_manage_labels"
+        android:title="🏷  Manage Labels"
+        android:icon="@drawable/ic_label" />
+    <item
+        android:id="@+id/action_export"
+        android:title="⬆  Export Backup"
+        android:icon="@drawable/ic_upload" />
+    <item
+        android:id="@+id/action_import"
+        android:title="⬇  Restore Backup"
+        android:icon="@drawable/ic_download" />
+    <item
+        android:id="@+id/action_empty_trash"
+        android:title="🗑  Empty Trash"
+        android:icon="@drawable/ic_delete_forever" />
+
+</menu>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="160dp"
+    android:viewportWidth="160"
+    android:viewportHeight="160">
+
+    <!-- Shadow -->
+    <path android:fillColor="#0D000000"
+        android:pathData="M40,130 Q80,138 120,130 Q130,145 80,148 Q30,145 40,130Z" />
+
+    <!-- Notebook back page -->
+    <path android:fillColor="#E8DEF8"
+        android:pathData="M50,30 L118,30 Q122,30 122,34 L122,128 Q122,132 118,132 L50,132 Q46,132 46,128 L46,34 Q46,30 50,30Z" />
+
+    <!-- Notebook front page -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M44,24 L112,24 Q116,24 116,28 L116,122 Q116,126 112,126 L44,126 Q40,126 40,122 L40,28 Q40,24 44,24Z" />
+
+
+    <!-- Lines on page -->
+    <path android:strokeColor="#E7E0EC" android:strokeWidth="2"
+        android:pathData="M52,50 L108,50" />
+    <path android:strokeColor="#E7E0EC" android:strokeWidth="2"
+        android:pathData="M52,62 L108,62" />
+    <path android:strokeColor="#E7E0EC" android:strokeWidth="2"
+        android:pathData="M52,74 L90,74" />
+
+    <!-- Pencil -->
+    <path android:fillColor="#6750A4"
+        android:pathData="M100,90 L114,76 L120,82 L106,96Z" />
+    <path android:fillColor="#D0BCFF"
+        android:pathData="M106,96 L120,82 L124,86 L110,100Z" />
+    <path android:fillColor="#FFF8E1"
+        android:pathData="M98,92 L100,90 L106,96 L104,98Z" />
+    <path android:fillColor="#5D4037"
+        android:pathData="M96,94 L98,92 L104,98 L99,103Z" />
+
+    <!-- Star accent -->
+    <path android:fillColor="#FFD700" android:alpha="0.8"
+        android:pathData="M128,22 L130,28 L136,28 L131,32 L133,38 L128,34 L123,38 L125,32 L120,28 L126,28Z" />
+
+</vector>

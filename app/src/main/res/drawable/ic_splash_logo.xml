@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- QR Code Frame - Top Left Corner -->
+    <path
+        android:fillColor="#3F51B5"
+        android:pathData="M5,5h30v30h-30zM10,10v20h20v-20z" />
+    <path
+        android:fillColor="#3F51B5"
+        android:pathData="M15,15h10v10h-10z" />
+
+    <!-- QR Code Frame - Top Right Corner -->
+    <path
+        android:fillColor="#3F51B5"
+        android:pathData="M65,5h30v30h-30zM70,10v20h20v-20z" />
+    <path
+        android:fillColor="#3F51B5"
+        android:pathData="M75,15h10v10h-10z" />
+
+    <!-- QR Code Frame - Bottom Left Corner -->
+    <path
+        android:fillColor="#3F51B5"
+        android:pathData="M5,65h30v30h-30zM10,70v20h20v-20z" />
+    <path
+        android:fillColor="#3F51B5"
+        android:pathData="M15,75h10v10h-10z" />
+
+    <!-- Scanner Crosshair - Center -->
+    <path
+        android:fillColor="#00BCD4"
+        android:pathData="M45,40h10v20h-10z" />
+    <path
+        android:fillColor="#00BCD4"
+        android:pathData="M40,45h20v10h-20z" />
+
+    <!-- Scan corners -->
+    <path
+        android:strokeColor="#2196F3"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M40,5L40,15 M60,5L60,15" />
+    <path
+        android:strokeColor="#2196F3"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M40,85L40,95 M60,85L60,95" />
+
+    <!-- Data dots -->
+    <path
+        android:fillColor="#303F9F"
+        android:pathData="M45,60h5v5h-5zM55,60h5v5h-5zM65,45h5v5h-5zM65,55h5v5h-5zM45,70h5v5h-5zM55,70h5v5h-5zM70,65h5v5h-5zM80,45h5v5h-5zM80,55h5v5h-5z" />
+
+</vector>
